@@ -1,0 +1,91 @@
+## Import from json
+
+mongoimport --db bda_restaurant --collection restaurants --file /home/parth/parth/practicals/BDA/prac8/restaurant.json --jsonArray
+
+--------------------------------------------
+
+## Find all
+db.restaurants.find()
+db.restaurants.find().pretty()
+
+--------------------------------------------
+
+## Find with where clause
+db.restaurants.find({"id":11})
+
+--------------------------------------------
+
+## Insert one
+db.restaurants.insert({
+    "id" : 11,
+    "name" : "La Pinoz"
+})
+
+--------------------------------------------
+
+## Insert many
+db.restaurants.insertMany([
+    {
+        "id" : 12,
+        "name" : "La Milano"
+    },
+    {
+        "id" : 13,
+        "name" : "Tasty"
+    }
+])
+
+--------------------------------------------
+
+## sort
+# 1 for ascending -1 for descending
+
+db.restaurants.find().sort({"id":1})
+db.restaurants.find().sort({"id":-1})
+
+--------------------------------------------
+
+## Update (Replace entire obj with new)
+
+db.restaurants.update({"id":11},
+    {
+        "id" : 11,
+        "name" : "La Pinoz",
+        "reviews": [{
+          "name": "Sally",
+          "date": "October 26, 2016",
+          "rating": 4,
+          "comments": "One of the tastiest and most unique ramen places I've been to in NYC, but also the priciest. I think overall its worth the try. Not an everyday casual ramen shop though."
+        }
+      ]
+    },
+    {
+        upsert:true
+    }
+)
+
+- gives error: MongoInvalidArgumentError: Update document requires atomic operators
+Why?
+
+## Update (only change specified fields)
+
+db.restaurants.update({"id":11},
+{
+    $set : {
+        "reviews": [{
+          "name": "Sally",
+          "date": "October 26, 2016",
+          "rating": 4,
+          "comments": "One of the tastiest and most unique ramen places I've been to in NYC, but also the priciest. I think overall its worth the try. Not an everyday casual ramen shop though."
+        }
+      ]
+    }
+})
+
+--------------------------------------------
+
+## Delete
+
+db.restaurants.remove({id:12})
+
+--------------------------------------------

@@ -1,0 +1,6 @@
+Hello, this is a practice BDA Map Reduce
+Word Count Problem using Python.
+Word Count
+Python
+BDA
+BDA

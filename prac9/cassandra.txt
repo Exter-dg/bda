@@ -1,0 +1,79 @@
+## help
+
+help
+
+--------------------------------------------
+
+## CAPTURE
+
+CAPTURE '/home/parth/parth/practicals/BDA/prac9/cassandra_output.txt'
+
+capture off;
+
+--------------------------------------------
+
+## Describe 
+
+describe cluster;
+describe keyspaces;
+describe tables;
+
+--------------------------------------------
+
+## Create Keyspace
+
+CREATE KEYSPACE bda9
+WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 3};
+
+USE bda9;
+
+--------------------------------------------
+
+## Create Table 
+
+
+CREATE TABLE emp(
+   emp_id int PRIMARY KEY,
+   emp_name text,
+   emp_city text,
+   emp_sal varint,
+   emp_phone varint
+   );
+
+--------------------------------------------
+
+## Insert 
+
+INSERT INTO emp (emp_id, emp_name, emp_city,
+   emp_phone, emp_sal) VALUES(1,'ram', 'Hyderabad', 9848022338, 50000);
+
+--------------------------------------------
+
+## Update 
+
+UPDATE emp SET emp_city='Delhi',emp_sal=50000
+        ...    WHERE emp_id=2;
+
+--------------------------------------------
+
+## Find with where 
+
+Why is there a need to set secondary index?
+CREATE INDEX ON emp(emp_sal);
+SELECT * FROM emp WHERE emp_sal=50000;
+
+--------------------------------------------
+
+## Find all
+
+SELECT * from emp;
+
+--------------------------------------------
+
+## Delete
+
+DELETE emp_sal FROM emp WHERE emp_id=1;
+
+DELETE FROM emp WHERE emp_id=1;
+
+--------------------------------------------
